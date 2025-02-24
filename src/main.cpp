@@ -32,8 +32,21 @@ int main()
                 }
             }
         }
-        
-        // Effacer la fenêtre avec une couleur noire
+
+        // Appliquer la rotation sur X, Y et Z
+        applyRotation(cubeVertices, rotationMatrixY);
+        applyRotation(cubeVertices, rotationMatrixX);
+        applyRotation(cubeVertices, rotationMatrixZ);
+
+        // Mettre à jour les cercles
+        for(int i = 0; i < 8; ++i) {
+            circles[i].setPosition(
+                OFFSET_X + SCALE * cubeVertices[i][0], 
+                OFFSET_Y + SCALE * cubeVertices[i][1]
+            );
+        }
+
+        // Effacer la fenêtre avec une couleur blanche
         window.clear(sf::Color::White);
 
         // Dessiner les sommets du cube

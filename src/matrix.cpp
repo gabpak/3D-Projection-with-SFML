@@ -2,30 +2,26 @@
 
 #include <math.h>
 
-float theta {0.f};
+float thetaX {0.01f};
+float thetaY {0.02f};
+float thetaZ {0.03f};
 
 // Definition des variables externes présente dans matrix.hpp
-Matrix3x3 projectionMatrix = {{
-    {1, 0, 0},
-    {0, 1, 0},
-    {0, 0, 0}
-}};
-
 Matrix3x3 rotationMatrixX= {{
     {1, 0, 0},
-    {0, cos(theta), -sin(theta)},
-    {0, sin(theta), cos(theta)}
+    {0, cos(thetaX), -sin(thetaX)},
+    {0, sin(thetaX), cos(thetaX)}
 }};
 
 Matrix3x3 rotationMatrixY= {{
-    {cos(theta), 0, sin(theta)},
+    {cos(thetaY), 0, sin(thetaY)},
     {0, 1, 0},
-    {-sin(theta), 0, cos(theta)}
+    {-sin(thetaY), 0, cos(thetaY)}
 }};
 
 Matrix3x3 rotationMatrixZ= {{
-    {cos(theta), -sin(theta), 0},
-    {sin(theta), cos(theta), 0},
+    {cos(thetaZ), -sin(thetaZ), 0},
+    {sin(thetaZ), cos(thetaZ), 0},
     {0, 0, 1}
 }};
 
@@ -66,4 +62,10 @@ void initCircles(std::array<sf::CircleShape, 8> &circles, const std::array<Matri
     circles[5].setPosition(vertices[5][0] * SCALE + OFFSET_X, vertices[5][1] * SCALE + OFFSET_Y);
     circles[6].setPosition(vertices[6][0] * SCALE + OFFSET_X, vertices[6][1] * SCALE + OFFSET_Y);
     circles[7].setPosition(vertices[7][0] * SCALE + OFFSET_X, vertices[7][1] * SCALE + OFFSET_Y);
+}
+
+void applyRotation(std::array<Matrix1x3, 8> &vertices, const Matrix3x3& mat) {
+    for (auto& vertex : vertices) {
+        vertex = multiplyMatrix(vertex, mat);
+    }
 }
