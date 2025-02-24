@@ -2,8 +2,8 @@ CXX = g++
 CXXCFLAGS = -std=c++2a -g -Wall -Wextra -Werror -pedantic
 SRC_DIR = ./src
 BUILD_DIR = ./build
-INC_DIR = C:/SFML-2.5.1/include
-LIB_DIR = C:/SFML-2.5.1/lib
+INC_DIR = ./include
+LIB_DIR = ./lib
 LIBS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 # Création du dossier build s'il n'existe pas
@@ -33,7 +33,7 @@ link: $(OBJS)
 
 # Nettoyage
 clean:
-	rm -f $(BUILD_DIR)/*.o $(BUILD_DIR)/main
+	cd $(BUILD_DIR) && del *.o && del *.exe
 
 # Exécution
 execute:

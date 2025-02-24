@@ -1,7 +1,23 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <array>
+
+#include "matrix.hpp"
 
 int main()
 {
+    Matrix1x3 vec = {1, 2, 3};
+    Matrix3x3 mat = {{
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    }};
+
+    Matrix1x3 result = multiplyMatrix(vec, mat);
+    std::cout << result[0] << '\n';
+    std::cout << result[1] << '\n';
+    std::cout << result[2] << '\n';
+
     // Créer une fenêtre SFML
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Projection");
 
