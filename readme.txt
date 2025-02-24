@@ -1,4 +1,4 @@
-![3D Rotation](./doc/Rotation.gif)
+<img src="./doc/Rotation.gif"/>
 
 // ================== Build procedure ================== //
 > mkdir build
