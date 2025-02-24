@@ -15,6 +15,7 @@ int main()
 
     // Créer une fenêtre SFML
     sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "SFML Projection", sf::Style::None);
+    window.setFramerateLimit(60);
 
     // Boucle principale
     while(window.isOpen())
@@ -31,11 +32,11 @@ int main()
                 }
             }
         }
-
+        
         // Effacer la fenêtre avec une couleur noire
         window.clear(sf::Color::White);
 
-        // Dessiner le cercle
+        // Dessiner les sommets du cube
         for(int i{0}; i < 8; ++i){
             window.draw(circles[i]);
         }

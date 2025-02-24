@@ -1,10 +1,32 @@
 #include "matrix.hpp"
 
-// Definition de la variable extern présente dans matrix.hpp
+#include <math.h>
+
+float theta {0.f};
+
+// Definition des variables externes présente dans matrix.hpp
 Matrix3x3 projectionMatrix = {{
     {1, 0, 0},
     {0, 1, 0},
     {0, 0, 0}
+}};
+
+Matrix3x3 rotationMatrixX= {{
+    {1, 0, 0},
+    {0, cos(theta), -sin(theta)},
+    {0, sin(theta), cos(theta)}
+}};
+
+Matrix3x3 rotationMatrixY= {{
+    {cos(theta), 0, sin(theta)},
+    {0, 1, 0},
+    {-sin(theta), 0, cos(theta)}
+}};
+
+Matrix3x3 rotationMatrixZ= {{
+    {cos(theta), -sin(theta), 0},
+    {sin(theta), cos(theta), 0},
+    {0, 0, 1}
 }};
 
 Matrix1x3 multiplyMatrix(const Matrix1x3& vec, const Matrix3x3& mat){
@@ -45,4 +67,3 @@ void initCircles(std::array<sf::CircleShape, 8> &circles, const std::array<Matri
     circles[6].setPosition(vertices[6][0] * SCALE + OFFSET_X, vertices[6][1] * SCALE + OFFSET_Y);
     circles[7].setPosition(vertices[7][0] * SCALE + OFFSET_X, vertices[7][1] * SCALE + OFFSET_Y);
 }
-
