@@ -1,0 +1,3 @@
+build/main.o
+build/main.exe
+.vscode/c_cpp_properties.json
