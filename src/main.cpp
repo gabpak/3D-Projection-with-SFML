@@ -3,45 +3,42 @@
 #include <array>
 
 #include "matrix.hpp"
+#include "constants.hpp"
+
+std::array<Matrix1x3, 8> cubeVertices;  // Coordonnées des sommets du cube.
+std::array<sf::CircleShape, 8> circles; // Objet sfml cercle pour l'affichage graphique. 
 
 int main()
 {
-    Matrix1x3 vec = {1, 2, 3};
-    Matrix3x3 mat = {{
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9}
-    }};
-
-    Matrix1x3 result = multiplyMatrix(vec, mat);
-    std::cout << result[0] << '\n';
-    std::cout << result[1] << '\n';
-    std::cout << result[2] << '\n';
+    initCubeVertices(cubeVertices); // On applique les coordonnées normalisées du cubes
+    initCircles(circles, cubeVertices);
 
     // Créer une fenêtre SFML
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Projection");
-
-    // Créer un cercle
-    sf::CircleShape shape(50);
-    shape.setPosition(25.f, 25.f);
-    shape.setFillColor(sf::Color::Green);
+    sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "SFML Projection", sf::Style::None);
 
     // Boucle principale
-    while (window.isOpen())
+    while(window.isOpen())
     {
         // Gérer les événements
         sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
+        while(window.pollEvent(event)){
+            if(event.type == sf::Event::Closed)
                 window.close();
+
+            if(event.type == sf::Event::KeyPressed){
+                if(event.key.code == sf::Keyboard::Escape){
+                    window.close();
+                }
+            }
         }
 
         // Effacer la fenêtre avec une couleur noire
-        window.clear(sf::Color::Black);
+        window.clear(sf::Color::White);
 
         // Dessiner le cercle
-        window.draw(shape);
+        for(int i{0}; i < 8; ++i){
+            window.draw(circles[i]);
+        }
 
         // Afficher le contenu de la fenêtre
         window.display();
