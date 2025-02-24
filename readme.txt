@@ -1,4 +1,4 @@
-![Image](https://github.com/user-attachments/assets/5219f144-ea54-4fed-9e2c-4e25bb494d60)
+![Image](https://github.com/user-attachments/assets/627731b7-792d-4a30-8754-4a685970dbe7)
 
 // ================== Build procedure ================== //
 > mkdir build
