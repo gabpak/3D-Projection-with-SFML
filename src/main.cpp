@@ -7,6 +7,7 @@
 
 std::array<Matrix1x3, 8> cubeVertices;  // Coordonnées des sommets du cube.
 std::array<sf::CircleShape, 8> circles; // Objet sfml cercle pour l'affichage graphique. 
+sf::VertexArray lines(sf::Lines, 24);   // Coordonnées des arrêtes du cube
 
 int main()
 {
@@ -33,12 +34,12 @@ int main()
             }
         }
 
-        // Appliquer la rotation sur X, Y et Z
+        // Appliquer la rotation sur X, Y et Z au cube
         applyRotation(cubeVertices, rotationMatrixY);
         applyRotation(cubeVertices, rotationMatrixX);
         applyRotation(cubeVertices, rotationMatrixZ);
 
-        // Mettre à jour les cercles
+        // Mettre à jour les 8 sommets du cube
         for(int i = 0; i < 8; ++i) {
             circles[i].setPosition(
                 OFFSET_X + SCALE * cubeVertices[i][0], 
@@ -46,12 +47,22 @@ int main()
             );
         }
 
+        // Mettre à jour les 12 arrêtes du cube
+        updateCubeLines(lines, cubeVertices);
+
         // Effacer la fenêtre avec une couleur blanche
         window.clear(sf::Color::White);
 
         // Dessiner les sommets du cube
+        /*
         for(int i{0}; i < 8; ++i){
             window.draw(circles[i]);
+        }
+        */
+
+        // Dessiner les arrêtes du cube
+        for(int i{0}; i < 24; ++i){
+            window.draw(lines);
         }
 
         // Afficher le contenu de la fenêtre

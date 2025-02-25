@@ -47,9 +47,52 @@ void initCubeVertices(std::array<Matrix1x3, 8> &arr){
     arr[7] = {1.f, 1.f, 1.f};
 }
 
+void updateCubeLines(sf::VertexArray &lines, std::array<Matrix1x3, 8> &vertices){
+    lines[0] = sf::Vertex(sf::Vector2f(vertices[0][0] * SCALE + OFFSET_X, vertices[0][1] * SCALE + OFFSET_Y));
+    lines[1] = sf::Vertex(sf::Vector2f(vertices[1][0] * SCALE + OFFSET_X, vertices[1][1] * SCALE + OFFSET_Y));
+
+    lines[2] = sf::Vertex(sf::Vector2f(vertices[1][0] * SCALE + OFFSET_X, vertices[1][1] * SCALE + OFFSET_Y));
+    lines[3] = sf::Vertex(sf::Vector2f(vertices[2][0] * SCALE + OFFSET_X, vertices[2][1] * SCALE + OFFSET_Y));
+
+    lines[4] = sf::Vertex(sf::Vector2f(vertices[2][0] * SCALE + OFFSET_X, vertices[2][1] * SCALE + OFFSET_Y));
+    lines[5] = sf::Vertex(sf::Vector2f(vertices[3][0] * SCALE + OFFSET_X, vertices[3][1] * SCALE + OFFSET_Y));
+
+    lines[6] = sf::Vertex(sf::Vector2f(vertices[3][0] * SCALE + OFFSET_X, vertices[3][1] * SCALE + OFFSET_Y));
+    lines[7] = sf::Vertex(sf::Vector2f(vertices[0][0] * SCALE + OFFSET_X, vertices[0][1] * SCALE + OFFSET_Y));
+
+    lines[8] = sf::Vertex(sf::Vector2f(vertices[4][0] * SCALE + OFFSET_X, vertices[4][1] * SCALE + OFFSET_Y));
+    lines[9] = sf::Vertex(sf::Vector2f(vertices[5][0] * SCALE + OFFSET_X, vertices[5][1] * SCALE + OFFSET_Y));
+
+    lines[10] = sf::Vertex(sf::Vector2f(vertices[5][0] * SCALE + OFFSET_X, vertices[5][1] * SCALE + OFFSET_Y));
+    lines[11] = sf::Vertex(sf::Vector2f(vertices[6][0] * SCALE + OFFSET_X, vertices[6][1] * SCALE + OFFSET_Y));
+
+    lines[12] = sf::Vertex(sf::Vector2f(vertices[6][0] * SCALE + OFFSET_X, vertices[6][1] * SCALE + OFFSET_Y));
+    lines[13] = sf::Vertex(sf::Vector2f(vertices[7][0] * SCALE + OFFSET_X, vertices[7][1] * SCALE + OFFSET_Y));
+
+    lines[14] = sf::Vertex(sf::Vector2f(vertices[7][0] * SCALE + OFFSET_X, vertices[7][1] * SCALE + OFFSET_Y));
+    lines[15] = sf::Vertex(sf::Vector2f(vertices[4][0] * SCALE + OFFSET_X, vertices[4][1] * SCALE + OFFSET_Y));
+
+    lines[16] = sf::Vertex(sf::Vector2f(vertices[0][0] * SCALE + OFFSET_X, vertices[0][1] * SCALE + OFFSET_Y));
+    lines[17] = sf::Vertex(sf::Vector2f(vertices[5][0] * SCALE + OFFSET_X, vertices[5][1] * SCALE + OFFSET_Y));
+
+    lines[18] = sf::Vertex(sf::Vector2f(vertices[1][0] * SCALE + OFFSET_X, vertices[1][1] * SCALE + OFFSET_Y));
+    lines[19] = sf::Vertex(sf::Vector2f(vertices[6][0] * SCALE + OFFSET_X, vertices[6][1] * SCALE + OFFSET_Y));
+
+    lines[20] = sf::Vertex(sf::Vector2f(vertices[2][0] * SCALE + OFFSET_X, vertices[2][1] * SCALE + OFFSET_Y));
+    lines[21] = sf::Vertex(sf::Vector2f(vertices[7][0] * SCALE + OFFSET_X, vertices[7][1] * SCALE + OFFSET_Y));
+
+    lines[22] = sf::Vertex(sf::Vector2f(vertices[3][0] * SCALE + OFFSET_X, vertices[3][1] * SCALE + OFFSET_Y));
+    lines[23] = sf::Vertex(sf::Vector2f(vertices[4][0] * SCALE + OFFSET_X, vertices[4][1] * SCALE + OFFSET_Y));
+
+    // Nous mettons les arrêtes en couleur noir
+    for (int i = 0; i < 24; ++i) {
+        lines[i].color = sf::Color::Black;
+    }
+}
+
 void initCircles(std::array<sf::CircleShape, 8> &circles, const std::array<Matrix1x3, 8> &vertices){
     for(int i{0}; i < 8; ++i){
-        circles[i] = sf::CircleShape(2.5);
+        circles[i] = sf::CircleShape(1.f);
         circles[i].setFillColor(sf::Color::Black);
     }
 

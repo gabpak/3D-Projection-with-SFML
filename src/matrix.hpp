@@ -26,6 +26,8 @@ extern Matrix3x3 rotationMatrixZ;
 Matrix1x3 multiplyMatrix(const Matrix1x3& vec, const Matrix3x3& mat);
 // Initialisation des sommets de notre cube
 void initCubeVertices(std::array<Matrix1x3, 8> &arr);
+// Initialisation des arrêtes
+void updateCubeLines(sf::VertexArray &lines, std::array<Matrix1x3, 8> &vertices);
 // Initialisation des cercles graphiques SFML avec les vertices (qui contiennent les coordonnées)
 void initCircles(std::array<sf::CircleShape, 8> &circles, const std::array<Matrix1x3, 8> &vertices);
 // Application des matrices de rotation
