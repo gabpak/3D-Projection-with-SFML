@@ -6,13 +6,13 @@
 #include "constants.hpp"
 
 std::array<Matrix1x3, 8> cubeVertices;  // Coordonnées des sommets du cube.
-std::array<sf::CircleShape, 8> circles; // Objet sfml cercle pour l'affichage graphique. 
+std::array<sf::CircleShape, 8> circles; // Les 8 sommets du cube (graphique)
 sf::VertexArray lines(sf::Lines, 24);   // Coordonnées des arrêtes du cube
 
 int main()
 {
-    initCubeVertices(cubeVertices); // On applique les coordonnées normalisées du cubes
-    initCircles(circles, cubeVertices);
+    initCubeVertices(cubeVertices); // On initialise les coordonnées du cubes
+    initCircles(circles, cubeVertices); // Initialisation des 8 sommets (graphique)
 
     // Créer une fenêtre SFML
     sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "SFML Projection", sf::Style::None);
@@ -21,7 +21,7 @@ int main()
     // Boucle principale
     while(window.isOpen())
     {
-        // Gérer les événements
+        // Gestion des événements
         sf::Event event;
         while(window.pollEvent(event)){
             if(event.type == sf::Event::Closed)
@@ -53,14 +53,7 @@ int main()
         // Effacer la fenêtre avec une couleur blanche
         window.clear(sf::Color::White);
 
-        // Dessiner les sommets du cube
-        /*
-        for(int i{0}; i < 8; ++i){
-            window.draw(circles[i]);
-        }
-        */
-
-        // Dessiner les arrêtes du cube
+        // Dessiner les 12 arrêtes du cube (12x2 pour les coordonnées)
         for(int i{0}; i < 24; ++i){
             window.draw(lines);
         }
